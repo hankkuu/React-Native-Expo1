@@ -6,7 +6,7 @@ import { Icon } from 'native-base';
 import { createMaterialTopTabNavigator } from 'react-navigation';
 
 // 파일에서 추가
-import Tab1 from './AppTab/Tab1';
+import Tab1 from './MemoTab/Tab1';
 import Tab2 from './AppTab/Tab2';
 import Tab3 from './AppTab/Tab3';
 import Tab4 from './AppTab/Tab4';
@@ -36,8 +36,7 @@ const AppTabNavigator = createMaterialTopTabNavigator({
     screen: Tab2
   },
   Tab3: {
-    screen: Tab3,
-    aaa : "dddd"
+    screen: Tab3
   },
   Tab4: {
     screen: Tab4
