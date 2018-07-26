@@ -36,8 +36,7 @@ const AppTabNavigator = createMaterialTopTabNavigator({
     screen: Tab2
   },
   Tab3: {
-    screen: Tab3,
-    aaa : "dddd"
+    screen: Tab3
   },
   Tab4: {
     screen: Tab4
