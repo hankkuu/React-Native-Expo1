@@ -25,9 +25,9 @@ export default class Tab1 extends Component {
     return (
       <View style={styles.container}>
       {/* <StatusBar barStyle="light-content" /> */}
-      <Text style={styles.title}>To do</Text>
+      {/* <Text style={styles.title}>To do</Text> */}
       <View style={styles.card}>
-        <TextInput style={styles.input} placeholder={"New To Do"} 
+        <TextInput style={styles.input} placeholder={"New Memo"} 
                    value={newToDo} 
                    onChangeText={this._controllNewToDo} 
                    placeholderTextColor={"#999"} 
@@ -49,7 +49,7 @@ export default class Tab1 extends Component {
             ))}
         </ScrollView>
         <ActionButton buttonColor="rgba(231,76,60,1)">
-          <ActionButton.Item buttonColor='#9b59b6' title="Head" onPress={() => console.log("notes tapped!")}>
+          <ActionButton.Item buttonColor='#9b59b6' title="Done" onPress={() => console.log("notes tapped!")}>
             <Icon name="md-done-all" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='#3498db' title="New" onPress={() => {}}>

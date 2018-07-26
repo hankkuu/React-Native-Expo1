@@ -28,12 +28,12 @@ export default class ToDo extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.column}>
-                    <TouchableOpacity onPress={this._toggleComplete}>
+                    {/* <TouchableOpacity onPress={this._toggleComplete}>
                         <View style={[
                             styles.circle, isCompleted ? styles.compledCircle : styles.uncompledCircle
                             ]}>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     {/* <Text style={[styles.text, isCompleted ? styles.compledText : styles.uncompledText]}>
                         {text}
                     </Text> */}
