@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, Dimensions, Platform, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Dimensions, Platform, ScrollView, Modal, TouchableHighlight } from 'react-native';
 import { Icon } from 'native-base';
 import ActionButton from 'react-native-action-button';
 import uuidv1 from "uuid/v1";
@@ -11,7 +11,8 @@ export default class Tab1 extends Component {
   state = {
     newToDo: "",
     loadedToDos: false,
-    toDos: {}
+    toDos: {},
+    modalVisible: false,
   }
 
   static navigationOptions = {
@@ -27,7 +28,7 @@ export default class Tab1 extends Component {
       {/* <StatusBar barStyle="light-content" /> */}
       {/* <Text style={styles.title}>To do</Text> */}
       <View style={styles.card}>
-        <TextInput style={styles.input} placeholder={"New Memo"} 
+        {/* <TextInput style={styles.input} placeholder={"a"} 
                    value={newToDo} 
                    onChangeText={this._controllNewToDo} 
                    placeholderTextColor={"#999"} 
@@ -35,7 +36,7 @@ export default class Tab1 extends Component {
                    autoCorrect={false}
                    onSubmitEditing={this._addToDo}
                    underlineColorAndroid={"transparent"} >
-        </TextInput>
+        </TextInput> */}
         <ScrollView contentContainerStyle={styles.toDos}>
           {Object.values(toDos).map(toDo => (
             <ToDo 
@@ -49,18 +50,69 @@ export default class Tab1 extends Component {
             ))}
         </ScrollView>
         <ActionButton buttonColor="rgba(231,76,60,1)">
-          <ActionButton.Item buttonColor='#9b59b6' title="Done" onPress={() => console.log("notes tapped!")}>
+          {/* <ActionButton.Item buttonColor='#9b59b6' title="Done" onPress={() => console.log("notes tapped!")}>
             <Icon name="md-done-all" style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-          <ActionButton.Item buttonColor='#3498db' title="New" onPress={() => {}}>
+          </ActionButton.Item> */}
+          <ActionButton.Item buttonColor='#3498db' title="New" onPress={() => {this.setModalVisible(true)}}>
             <Icon name="md-create" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
+
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            alert('Modal has been closed.');
+          }}>
+          <View style={{marginTop: 22}}>
+            <View>
+                <TextInput style={styles.input} placeholder={"Input Text"}
+                  value={newToDo}
+                  onChangeText={this._controllNewToDo}
+                  placeholderTextColor={"#999"}
+                  returnKeyType={"done"}
+                  autoCorrect={false}
+                  onSubmitEditing={this._addToDo}
+                  multiline={true}
+                  underlineColorAndroid={"transparent"} >
+                </TextInput>
+
+              <TouchableHighlight
+                onPress={this._donePress}>
+
+                <Icon name="md-create" style={styles.doneButton}>done</Icon>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
       </View>
 
     </View>
     );
   }
+
+  _donePress = () => {
+      this.setModalVisible(!this.state.modalVisible);       
+      const { newToDo } = this.state;
+      if(newToDo !== "") {
+        console.log("dddd");
+        this._addToDo();
+
+
+      } else {
+        console.log("ddfgg");
+      }
+           
+  }
+
+
+  setModalVisible(visible) {
+    this.setState({ 
+      modalVisible: visible 
+    });
+  }
+
   _controllNewToDo = text => {
     this.setState({
       newToDo: text
@@ -157,6 +209,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     //justifyContent: 'center',
   },
+  doneButton: {
+    alignItems: 'center',
+    fontSize: 30,
+    height: 30,
+    color: 'gray',
+  },
   title: {
     color: 'white',
     fontSize: 30,
@@ -167,9 +225,9 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: 'white',
     flex: 1,
-    width: width -25,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
+    width: width -0,
+    //borderTopLeftRadius: 10,
+    //borderTopRightRadius: 10,
     ...Platform.select({
       ios: {
         shadowColor: "rgb(50,50,50)",

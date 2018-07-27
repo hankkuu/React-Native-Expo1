@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions, TextInput } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions, TextInput, Modal, TouchableHighlight } from "react-native";
 import PropTypes from "prop-types";
+import { Icon } from 'native-base';
 
 const { width, height } = Dimensions.get("window");
 
@@ -9,7 +10,8 @@ export default class ToDo extends Component {
         super(props);
         this.state = {
             isEditing: false,
-            toDoValue: props.text
+            toDoValue: props.text,
+            modalVisible: false,
         };
     }
     static propTypes = {
@@ -38,19 +40,41 @@ export default class ToDo extends Component {
                         {text}
                     </Text> */}
                     { isEditing ? 
-                        (<TextInput 
-                            style={[ 
-                                styles.text, 
-                                styles.input, 
-                                isCompleted ? styles.compledText : styles.uncompledText 
-                            ]} 
-                            value={toDoValue} 
-                            multiline={true}
-                            onChangeText={this._controllInput} 
-                            returnKeyType={"done"}
-                            onBlur={this._finishEditing}
-                            underlineColorAndroid={"transparent"}
-                        />) :                     
+                        (                        
+                            <Modal
+                                animationType="slide"
+                                transparent={false}
+                                visible={this.state.modalVisible}
+                                onRequestClose={() => {
+                                    alert('Modal has been closed.');
+                                }}>
+                                <View style={{ marginTop: 22 }}>
+                                    <View>
+                                        <TextInput
+                                            style={[
+                                                styles.text,
+                                                styles.input,
+                                                isCompleted ? styles.compledText : styles.uncompledText
+                                            ]}
+                                            value={toDoValue}
+                                            multiline={true}
+                                            onChangeText={this._controllInput}
+                                            returnKeyType={"done"}
+                                            onBlur={this._finishEditing}
+                                            underlineColorAndroid={"transparent"}
+                                        />
+
+                                        <TouchableHighlight
+                                            onPress={this._donePress}>
+                                            <Icon name="md-create" style={styles.doneButton}>done</Icon>
+                                        </TouchableHighlight>
+                                    </View>
+                                </View>
+                            </Modal>
+
+                        
+                        
+                        ) :                     
                         ( <Text 
                             style={[
                                 styles.text, 
@@ -86,6 +110,21 @@ export default class ToDo extends Component {
             </View>
         );
     }
+
+    setModalVisible(visible) {
+        this.setState({ 
+          modalVisible: visible 
+        });
+      }
+
+    _donePress = () => {
+        this.setModalVisible(!this.state.modalVisible);       
+        const { newToDo } = this.state;
+        if(newToDo !== "") {
+            this._finishEditing();
+        }            
+    }
+
     _toggleComplete = () => {
         const { isCompleted, uncompleteToDo, completeToDo, id } = this.props;
         if(isCompleted) {
@@ -98,6 +137,7 @@ export default class ToDo extends Component {
         this.setState({
             isEditing: true
         });
+        this.setModalVisible(true);
     }
     _finishEditing = () => {
         const {toDoValue} = this.state;
@@ -159,7 +199,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
     },
     input: {
-        width: width / 2,
+        width: width,
         marginVertical: 15,
         paddingBottom: 5,
     }
