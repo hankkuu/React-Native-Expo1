@@ -7,7 +7,7 @@ import ToDo from "./ToDo";
 
 const { height, width } = Dimensions.get("window");
 
-export default class Tab1 extends Component {
+export default class MemoScreen extends Component {
   state = {
     newToDo: "",
     loadedToDos: false,
@@ -15,11 +15,12 @@ export default class Tab1 extends Component {
     modalVisible: false,
   }
 
-  static navigationOptions = {
-    tabBarIcon: ({ tintColor }) => (
-      <Icon name='ios-add-circle' style={{ color: tintColor }} />
-    )
-  }
+  // static navigationOptions = {
+  //   tabBarLabel: 'Memo',
+  //   tabBarIcon: ({ tintColor }) => (
+  //     <Icon name='ios-add-circle' style={{ color: tintColor }} />
+  //   )
+  // }
 
   render() {
     const { newToDo, loadedToDos, toDos } = this.state;
@@ -74,13 +75,12 @@ export default class Tab1 extends Component {
                   returnKeyType={"done"}
                   autoCorrect={false}
                   onSubmitEditing={this._addToDo}
-                  multiline={true}
+                  // multiline={true}
                   underlineColorAndroid={"transparent"} >
                 </TextInput>
 
               <TouchableHighlight
                 onPress={this._donePress}>
-
                 <Icon name="md-create" style={styles.doneButton}>done</Icon>
               </TouchableHighlight>
             </View>
@@ -96,14 +96,8 @@ export default class Tab1 extends Component {
       this.setModalVisible(!this.state.modalVisible);       
       const { newToDo } = this.state;
       if(newToDo !== "") {
-        console.log("dddd");
         this._addToDo();
-
-
-      } else {
-        console.log("ddfgg");
-      }
-           
+      }            
   }
 
 

@@ -1,5 +1,5 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
+  "main": "App.js",
   "private": true,
   "dependencies": {
     "expo": "^28.0.0",
