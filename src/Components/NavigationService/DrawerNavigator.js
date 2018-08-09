@@ -11,13 +11,13 @@ import HomeScreenTabNavigator from '../NavigationService/HomeScreenTabNavigator'
 import SettingsScreen from '../Screens/DrawerNavigator/SettingsScreen';
 import TestScreen from '../Screens/DrawerNavigator/TestScreen';
 
-export default class App extends Component {
-    render() {
-        return (
-            <AppDrawerNavigator />
-        );
-    }
-}
+// export default class App extends Component {
+//     render() {
+//         return (
+//             <AppDrawerNavigator />
+//         );
+//     }
+// }
 
 const InnerStackNavigator = createStackNavigator({
     TabNavigator: {
@@ -43,32 +43,19 @@ const AppDrawerNavigator = createDrawerNavigator({
     }
 }, {
         initialRouteName: 'Home',
-        //contentComponent: CustomDrawerComponent,
+        contentComponent: CustomDrawerComponent,
         contentOptions: {
             activeTintColor: 'orange',
         }
     })
 
-//export default AppDrawerNavigator;
+export default AppDrawerNavigator;
 
-// const CustomDrawerComponent = (props) => (
-//     <SafeAreaView style={{ flex: 1 }}>
-//         <View style={{
-//             height: 150,
-//             backgroundColor: 'white',
-//             alignItems: 'center',
-//             justifyContent: 'center'
-//         }} >
-//             <Image
-//                 source={require('../../../assets/home.png')}
-//                 style={{ height: 120, width: 120, borderRadius: 60 }}
-//             />
-//         </View>
-//         <ScrollView>
-//             <DrawerItems {...props} />
-//         </ScrollView>
-//     </SafeAreaView>
-// )
+const CustomDrawerComponent = (props) => (
+    <View style={{ flex: 1 }}>
+        <Text>TTTT</Text>
+    </View>
+)
 
 const styles = StyleSheet.create({
     container: {

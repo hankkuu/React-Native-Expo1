@@ -70,7 +70,7 @@ class LoginScreen extends Component {
             //this.setState({
             //    isLogin: true
             //})
-            this.props.navigation.navigate('DrawerNavigator')
+            this.props.navigation.navigate('login')
 
         } else {
             //console.log("false");

@@ -15,8 +15,8 @@ class WelcomeScreen extends Component {
     render() {
         return (
             <View style={styles.container}>            
-                <Button title="Log in" onPress={() => this.props.navigation.navigate('LoginScreen')} />
-                <Button title="Sign Up" onPress={() => this.props.navigation.navigate('SignUpScreen')} />
+                <Button title="Log in" onPress={() => this.props.navigation.navigate('logout')} />
+                <Button title="Sign Up" onPress={() => this.props.navigation.navigate('signup')} />
             </View>
         );
     }
