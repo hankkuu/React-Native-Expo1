@@ -64,7 +64,7 @@ class LoginScreen extends Component {
         // 콜백함수에서 state를 가져오지 않으면 undifined로 된다
         const { myId, myPassword } = this.state;
 
-        if (myId === "sgr" && myPassword === "1234") {
+        //if (myId === "sgr" && myPassword === "1234") {
             //console.log("true");
             //alert("로그인 되었습니다.");
             //this.setState({
@@ -72,13 +72,13 @@ class LoginScreen extends Component {
             //})
             this.props.navigation.navigate('login')
 
-        } else {
+        //} else {
             //console.log("false");
             //alert("로그인이 실패했습니다.");
             //this.setState({
             //    isLogin: false
             //})
-        }
+        //}
     }
 }
 export default LoginScreen;

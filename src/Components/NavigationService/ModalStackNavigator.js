@@ -14,6 +14,7 @@ import SettingScreen from '../Screens/SettingScreen'
 import UserProfileScreen from '../Screens/Profile/UserProfileScreen'
 import AdvancedScreen from '../Screens/Chat/AdvancedScreen'
 import MemoScreen from '../Screens/TabNavigator/MemoScreen';
+import UserInfoScreen from '../Screens/Profile/UserInfoScreen';
 
 //Tab
 const Tab = createMaterialTopTabNavigator({
@@ -59,7 +60,8 @@ const Stack = createStackNavigator({
     root: { screen: Tab, navigationOptions: TabNavigationOptions },
     chat: { screen: ChatScreen },
     advanced: { screen: AdvancedScreen },
-    settings: { screen: SettingScreen }
+    settings: { screen: SettingScreen },
+    UserInfo : { screen: UserInfoScreen }
 }, {
         navigationOptions: StackNavigationOptions,
         //transitionConfig:getSlideFromRightTransition
